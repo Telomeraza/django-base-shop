@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shop',                         # 1. Подключаем приложение и создать файл urls.py
+
 ]
 
 MIDDLEWARE = [
