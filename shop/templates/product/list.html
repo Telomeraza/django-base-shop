@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Товары{% endif %} 
+{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-item-center mb-4">
+    <h2 class="text-center mb-4">{% if category %}{{ category.name }}{% else %}Все товары{% endif %} </h2>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Сортировка
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdawn-item" href="?sort=name">По названию(А-Я)</a></li>
+            <li><a class="dropdawn-item" href="?sort=-name">По названию(Я-А)</a></li>
+            <li><a class="dropdawn-item" href="?sort=price">По цене(дешовые)</a></li>
+            <li><a class="dropdawn-item" href="?sort=-name">По названию(дорогие)</a></li>
+        </ul>
+    </div>
+</div>
+    {% if not products %}
+        <div class="alert alert-info">Товары в этой категории отсутсвуют</div>
+    {% else %}
+    <div class="row g-4">
+        {% for product in products %}
+            <div class="col-md-2">
+                <div class="card h-100 bg-dark border-secondary text-white">
+                    <a href="{{ product.get_absolute_url }}">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="{{ product.get_absolute_url }}" class="text-decoration-none">{{ product.name }}</a>
+                        </h5>
+                        <p class="card-text">{{ product.price }} руб.</p>
+                        <button class="btn btn-primary w-100 addToCart" data-name="Товар 1" data-price="999">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %} 
+
+{% endblock content %}
+

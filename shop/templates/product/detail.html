@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock title %}
+
+{% block content %}
+        <!-- Карточка товара -->
+    <div class="row">
+        <div class="col-md-3"> 
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-6">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="fw-bold">{{ product.price }} руб.</p>
+              <p class="card-text">
+                <a href="{{ product.category.get_absolute_url }}">
+                    {{ product.category.name }}
+                </a>
+              </p>
+              <div class="description mt-4">
+                <h5>Описание</h5>
+                <p>{{ product.description|linebreaks }}</p>
+              </div>
+              <button class="btn btn-primary w-100 addToCart" data-name="Товар 1" data-price="999">Добавить в корзину</button>
+            </div>
+          </div>
+        </div>
+    </div>
+{% endblock content %}
