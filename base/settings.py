@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',                         # 1. Подключаем приложение и создать файл urls.py
+    'cart',                         # 26.
 
 ]
 
@@ -127,3 +128,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'media')       # 24.
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CART_SESSION_ID = 'cart'            # 30. Приложение cart будет работать с сессиями
