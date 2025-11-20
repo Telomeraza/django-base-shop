@@ -31,7 +31,7 @@
                         <td>
                             <form action="{% url 'cart:cart_remove' item.product.id %}" method="post">
                                 <button type="submit" class="btn btn-sm btn-danger">
-                                    <i class="bi bi-trash"></i>
+                                    Удалить
                                 </button>
                                 {% csrf_token %}
                             </form>
