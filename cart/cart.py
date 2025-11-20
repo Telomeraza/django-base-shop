@@ -2,12 +2,12 @@ from django.conf import settings        # 27.
 from shop.models import Product         # 28.
 
 
-class Cart:                             # 29.
+class Cart:
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
-        if not cart:                                                # Если нет карзины мы ее задаем пустой
-            cart = self.session[settings.CART_SESSION_ID] = {}      #
+        if not cart:
+            cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
     def add(self, product, quantity=1, override_quantity=False):
@@ -32,8 +32,8 @@ class Cart:                             # 29.
             self.save()
 
     def __iter__(self):
-        product_ids = self.cart.key()
-        products = Product.objects.filter(id_in=product_ids)
+        product_ids = self.cart.keys()
+        products = Product.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
 
         for product in products:

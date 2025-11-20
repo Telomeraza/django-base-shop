@@ -29,9 +29,17 @@
             </li>
           {% endfor %}
 
-          <li class="nav-item"><a class="nav-link" href="#cart">Корзина</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url "cart:cart_detail" %}">Корзина</a></li>
           <li class="nav-item ms-3">
-            <button class="btn btn-outline-light" id="cartBtn">🛒 <span id="cartCount">0</span></button>
+            <button class="btn btn-outline-light" id="cartBtn">🛒 <span id="cartCount">
+              {% with total_items=cart|length %}
+                {% if total_items > 0 %}
+                  {{ total_items }}
+                {% else %}
+                  0
+                {% endif %}
+              {% endwith %}
+            </span></button>
           </li>
         </ul>
       </div>
@@ -54,15 +62,6 @@
       {% block content %}
       {% endblock content %}
 
-    </div>
-  </section>
-
-  <!-- Корзина -->
-  <section id="cart" class="py-5 bg-black border-top border-secondary">
-    <div class="container">
-      <h2 class="text-center mb-4">Корзина</h2>
-      <ul class="list-group mb-3" id="cartList"></ul>
-      <h4>Итого: <span id="cartTotal">0</span> ₽</h4>
     </div>
   </section>
 
